@@ -68,6 +68,7 @@ class AgentServer(WebSocket):
                 with open(self.log_file, 'a') as the_file:
                     the_file.write(str(self.cycle_counter) +
                                    ',' + str(self.reward_sum) + '\n')
+                self.reward_sum = 0
             else:
                 action, eps, q_now, obs_array = self.agent.agent_step(reward, image)
                 self.send(str(action))
