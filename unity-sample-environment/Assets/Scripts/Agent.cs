@@ -12,7 +12,7 @@ namespace MLPlayer {
 
 		public void AddReward (float reward)
 		{
-			if (state.endEpisode != 0) {
+			if (state.endEpisode == 0) {
 				state.reward += reward;
 			}
 		}
