@@ -24,6 +24,7 @@ namespace MLPlayer {
 		
 		string url = "ws://localhost:8765/ws";
 		float cycleTimeStepSize = 0.15f;
+		float episodeTimeLength = 15.0f;
 
 		[SerializeField] Agent agent;
 		[SerializeField] Environment environment;
@@ -85,7 +86,7 @@ namespace MLPlayer {
 			if (lastSendTime + cycleTimeStepSize <= Time.time) {
 				lastSendTime = Time.time;
 
-				if (Time.time - episodeStartTime > 5) {
+				if (Time.time - episodeStartTime > episodeTimeLength) {
 					TimeOver();
 				}
 				if (agent.state.endEpisode != 0) {
