@@ -38,13 +38,9 @@ namespace MLPlayer {
 			agent.action.Set (msg);
 			received.Set();
 		}
-		
-		void OnCycleUpdateBeforeSendState() {
-			agent.UpdateState ();
-			if (Time.time - episodeStartTime > 30) {
-				TimeOver();
-			}
-		}
+
+
+
 		void OnCycleUpdateAfterReceivedAction() {
 			agent.ResetState ();
 		}
@@ -52,7 +48,7 @@ namespace MLPlayer {
 
 		public void TimeOver() {
 			agent.AddReward (0);
-			StartNewEpisode ();
+			agent.EndEpisode ();
 		}
 
 		void StartNewEpisode() {
@@ -89,7 +85,13 @@ namespace MLPlayer {
 			if (lastSendTime + cycleTimeStepSize <= Time.time) {
 				lastSendTime = Time.time;
 
-				OnCycleUpdateBeforeSendState();
+				if (Time.time - episodeStartTime > 5) {
+					TimeOver();
+				}
+				if (agent.state.endEpisode != 0) {
+					StartNewEpisode ();
+				}
+				agent.UpdateState ();
 
 				var packer = new MsgPack.CompiledPacker();
 				byte[] msg = packer.Pack(agent.state);

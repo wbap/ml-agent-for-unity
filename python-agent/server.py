@@ -46,7 +46,7 @@ class AgentServer(WebSocket):
         image = Image.open(io.BytesIO(bytearray(dat['image'])))
         reward = dat['reward']
         end_episode = dat['endEpisode']
-        # image.save(str(self.counter) + ".png")
+        # image.save(str(self.cycle_counter) + ".png")
 
         if not self.agent_initialized:
             self.agent_initialized = True

@@ -126,7 +126,7 @@ Camera:
   field of view: 90
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -971,5 +971,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPrefabs:
-  - {fileID: 178030, guid: c488ca9e3d2b04a1b867d8273ca73048, type: 2}
   - {fileID: 142746, guid: 4ecd053992cf34b58866b793d44e5a99, type: 2}

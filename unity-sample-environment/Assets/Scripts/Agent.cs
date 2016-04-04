@@ -34,7 +34,7 @@ namespace MLPlayer {
 
 		public void EndEpisode ()
 		{
-			
+			state.endEpisode = 1;
 		}
 
 		public void Start() {
