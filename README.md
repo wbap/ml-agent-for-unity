@@ -21,14 +21,6 @@ sudo sh unity-editor-installer-5.1.0f3+2015082501.sh
 sudo apt-get install lib32stdc++6 -y
 ```
 
-install python modules:
-
-```
-pip install chainer
-pip install ws4py
-pip install cherrypy
-pip install msgpack-python
-```
 
 ### Mac
 Install Unity. I reccomend using Unity 5.1.0 (for linux experimental-build version)
@@ -36,7 +28,15 @@ Install Unity. I reccomend using Unity 5.1.0 (for linux experimental-build versi
 
 ### Windows
 
+not supported
+
 ## Quick Start
+download data:
+
+```
+./fetch.sh
+```
+
 Open unity-sample-environment in Unity and load unity-sample-environment/Scenes/sample
 
 [TODO:image]
@@ -47,6 +47,8 @@ Next, run python module as a server.
 cd python-agent
 python server.py
 ```
+
+
 
 ## System Architecture
 
