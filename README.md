@@ -83,7 +83,7 @@ Server: python module
  + The MIT License (MIT)
 
 
-## License & Copyright
+## Module Reference
 
 + MessagePack for Unity 
  + Copyright (C) 2011-2012 Kazuki Oikawa, Kazunari Kida
