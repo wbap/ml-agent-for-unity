@@ -12,6 +12,7 @@ namespace MLPlayer {
 			jump = false;
 		}
 		public void Set(string msg) {
+			Clear ();
 			switch (msg) {
 			case "0":
 				rotate = 1;
