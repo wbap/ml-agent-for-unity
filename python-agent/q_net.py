@@ -63,7 +63,8 @@ class QNet:
         if self.use_gpu >= 0:
             target = np.asanyarray(q.data.get(), dtype=np.float32)
         else:
-            target = np.asanyarray(q.data, dtype=np.float32)
+            # make new array
+            target = np.array(q.data, dtype=np.float32)
 
         for i in xrange(num_of_batch):
             if not episode_end[i][0]:
