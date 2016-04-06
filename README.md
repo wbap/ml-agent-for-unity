@@ -109,3 +109,7 @@ Set "Time Scale" to 100. This will make simulation more faster, but GUI response
  + Copyright (c) 2010-2016 sta.blockhead
  + The MIT License (MIT)
  + Assets/Packages/websocket-sharp
+
+
+## Creator
+[Masayoshi Nakamura](http://masayosshi.com/)
