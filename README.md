@@ -81,6 +81,13 @@ You can watch reward history python_agent/log_reward.log
 
 ![Architecture](https://cloud.githubusercontent.com/assets/1708549/14312101/b06f0310-fc25-11e5-9366-f41bfa414d90.png)
 
+## Tips
+### Simulate faster
+
+![](https://cloud.githubusercontent.com/assets/1708549/14313279/9aa6b66c-fc2b-11e5-915e-796348fbcdec.png)
+
+Set "timescale" to 100. GUI response will be very slowly.
+![](https://cloud.githubusercontent.com/assets/1708549/14313288/aa9aab28-fc2b-11e5-8965-b69b0ecef151.png)
 
 
 ## Algorithm Reference 
