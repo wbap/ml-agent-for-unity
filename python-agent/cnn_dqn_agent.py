@@ -86,7 +86,7 @@ class CnnDqnAgent(object):
                     self.epsilon = self.min_eps
                 eps = self.epsilon
             else:  # Initial Exploation Phase
-                print("Initial Exploration : %d/%d steps" % (self.time, self.q_net.initial_exploration))
+                print("Initial Exploration : %d/%d steps" % (self.time, self.q_net.initial_exploration)),
                 eps = 1.0
         else:  # Evaluation
             print("Policy is Frozen")
@@ -110,11 +110,12 @@ class CnnDqnAgent(object):
 
         # Simple text based visualization
         if self.use_gpu >= 0:
-            print('Step %d/ACT %d/R %.1f/EPS %.6f/Q_max %3f' % (
-                self.time, self.q_net.action_to_index(action), reward, eps, np.max(q_now.get())))
+            q_max = np.max(q_now.get())
         else:
-            print('Step %d/ACT %d/R %.1f/EPS %.6f/Q_max %3f' % (
-                self.time, self.q_net.action_to_index(action), reward, eps, np.max(q_now)))
+            q_max = np.max(q_now)
+
+        print('Step:%d  Action:%d  Reward:%.1f  Epsilon:%.6f  Q_max:%3f' % (
+            self.time, self.q_net.action_to_index(action), reward, eps, q_max))
 
         # Updates for next step
         self.last_observation = obs_array
@@ -125,7 +126,7 @@ class CnnDqnAgent(object):
             self.time += 1
 
     def agent_end(self, reward):  # Episode Terminated
-        print('episode finished: REWARD %.1f / EPSILON %.5f' % (reward, self.epsilon))
+        print('episode finished. Reward:%.1f / Epsilon:%.6f' % (reward, self.epsilon))
 
         # Learning Phase
         if self.policy_frozen is False:  # Learning ON/OFF
