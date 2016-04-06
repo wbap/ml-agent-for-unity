@@ -31,7 +31,7 @@ pip install msgpack-python
 ```
 
 ### Mac
-Install Unity. I reccomend using Unity 5.1.0 (for linux experimental-build version)
+Install Unity. (if you are going to use Ubuntu for GPU pwer, I reccomend install Unity 5.1.0 linux experimental-build version)
 
 install python modules
 ```
