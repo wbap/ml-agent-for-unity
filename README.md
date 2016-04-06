@@ -86,8 +86,9 @@ You can watch reward history python_agent/log_reward.log
 
 ![](https://cloud.githubusercontent.com/assets/1708549/14313279/9aa6b66c-fc2b-11e5-915e-796348fbcdec.png)
 
-Set "timescale" to 100. GUI response will be very slowly.
-![](https://cloud.githubusercontent.com/assets/1708549/14313288/aa9aab28-fc2b-11e5-8965-b69b0ecef151.png)
+Set "Time Scale" to 100. This will make simulation more faster, but GUI response will be very slow.
+<img width="200" alt="2016-04-06 19 06 50" src="https://cloud.githubusercontent.com/assets/1708549/14313288/aa9aab28-fc2b-11e5-8965-b69b0ecef151.png">
+>
 
 
 ## Algorithm Reference 
