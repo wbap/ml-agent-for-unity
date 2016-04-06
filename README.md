@@ -51,10 +51,6 @@ download data:
 ./fetch.sh
 ```
 
-Open unity-sample-environment in Unity and load Scenes/sample
-
-[TODO:image]
-
 Next, run python module as a server.
 
 ```
@@ -62,6 +58,13 @@ cd python-agent
 python server.py
 ```
 
+Open unity-sample-environment in Unity and load Scenes/sample
+
+![screenshot from 2016-04-06 18 08 31](https://cloud.githubusercontent.com/assets/1708549/14311462/990e607e-fc22-11e5-84cf-26c049482afc.png)
+
+Press Start Buttn. In first time, this will take a few minuts time.
+
+![screenshot from 2016-04-06 18 09 36](https://cloud.githubusercontent.com/assets/1708549/14311518/c309f8f2-fc22-11e5-937c-abd0d227d307.png)
 
 
 ## System Architecture
