@@ -92,11 +92,13 @@ Set "Time Scale" to 100. This will make simulation more faster, but GUI response
 
 
 ## Algorithm Reference 
-
-+ [DQN-chainer](https://github.com/ugo-nama-kun/DQN-chainer)
- + Copyright (c) 2015 Naoto Yoshida
- + The MIT License (MIT)
-
++ Mnih, V. et al. Human-level control through deep reinforcement learning. Nature 518, 529–533 (2015)
+ + http://www.nature.com/nature/journal/v518/n7540/abs/nature14236.html
+ + [DQN-chainer](https://github.com/ugo-nama-kun/DQN-chainer)
+  + Copyright (c) 2015 Naoto Yoshida
+  + The MIT License (MIT)
++ A. Krizhevsky, I. Sutskever, and G. Hinton. ImageNet classification with deep convolutional neural networks. In NIPS, 2012.
+ + [Caffe Model Zoo](https://github.com/BVLC/caffe/wiki/Model-Zoo)
 
 ## Module Reference
 
