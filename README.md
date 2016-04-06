@@ -51,7 +51,7 @@ download data:
 ./fetch.sh
 ```
 
-Open unity-sample-environment in Unity and load unity-sample-environment/Scenes/sample
+Open unity-sample-environment in Unity and load Scenes/sample
 
 [TODO:image]
 
