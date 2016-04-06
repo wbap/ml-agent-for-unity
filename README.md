@@ -67,16 +67,19 @@ Press Start Buttn. In first time, this will take a few minuts time.
 
 ![screenshot from 2016-04-06 18 09 36](https://cloud.githubusercontent.com/assets/1708549/14311518/c309f8f2-fc22-11e5-937c-abd0d227d307.png)
 
+You can watch reward history python_agent/log_reward.log
+
+![log](https://cloud.githubusercontent.com/assets/1708549/14312192/20292fdc-fc26-11e5-9b18-39c3c5ea113f.png)
+
 
 ## System Architecture
 
 
-Client: Unity
+- Client: Unity
+- Server: python module
+- Communication: Socket (WebSocket over TCP) using MessagePack
 
-Server: python module
-
-[TODO:image]
-
+![Architecture](https://cloud.githubusercontent.com/assets/1708549/14312101/b06f0310-fc25-11e5-9366-f41bfa414d90.png)
 
 
 
