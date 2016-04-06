@@ -69,7 +69,7 @@ Press Start Buttn. In first time, this will take a few minuts time.
 
 You can watch reward history python_agent/log_reward.log
 
-![log](https://cloud.githubusercontent.com/assets/1708549/14312192/20292fdc-fc26-11e5-9b18-39c3c5ea113f.png)
+<img width="300" alt="screenshot" src="https://cloud.githubusercontent.com/assets/1708549/14312192/20292fdc-fc26-11e5-9b18-39c3c5ea113f.png">
 
 
 ## System Architecture
@@ -79,15 +79,15 @@ You can watch reward history python_agent/log_reward.log
 - Server: python module
 - Communication: Socket (WebSocket over TCP) using MessagePack
 
-![Architecture](https://cloud.githubusercontent.com/assets/1708549/14312101/b06f0310-fc25-11e5-9366-f41bfa414d90.png)
+<img width="200" alt="screenshot" src="https://cloud.githubusercontent.com/assets/1708549/14312101/b06f0310-fc25-11e5-9366-f41bfa414d90.png">
 
 ## Tips
 ### Simulate faster
 
-![](https://cloud.githubusercontent.com/assets/1708549/14313279/9aa6b66c-fc2b-11e5-915e-796348fbcdec.png)
+<img width="400" alt="screenshot" src="https://cloud.githubusercontent.com/assets/1708549/14313279/9aa6b66c-fc2b-11e5-915e-796348fbcdec.png">
 
 Set "Time Scale" to 100. This will make simulation more faster, but GUI response will be very slow.
-<img width="200" alt="2016-04-06 19 06 50" src="https://cloud.githubusercontent.com/assets/1708549/14313288/aa9aab28-fc2b-11e5-8965-b69b0ecef151.png">
+<img width="250" alt="2016-04-06 19 06 50" src="https://cloud.githubusercontent.com/assets/1708549/14313288/aa9aab28-fc2b-11e5-8965-b69b0ecef151.png">
 >
 
 
