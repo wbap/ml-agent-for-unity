@@ -2,6 +2,7 @@ Machine Learning Agent for Unity
 =============
 
 # This is under construction 
+![screenshot](https://cloud.githubusercontent.com/assets/1708549/14311902/c6ce61ec-fc24-11e5-8018-5e3aaf98b6d3.png)
 
 ## Requirements:
 - python 2.7
