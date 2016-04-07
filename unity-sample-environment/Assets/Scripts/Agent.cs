@@ -8,7 +8,7 @@ namespace MLPlayer {
 	public class Agent : MonoBehaviour {
 		[SerializeField] Camera camera;
 		[SerializeField] Camera depthCamera;
-		public Shader shader;
+
 		public Action action { set; get; }
 		public State state { set; get; }
 
