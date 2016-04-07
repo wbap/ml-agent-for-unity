@@ -14,7 +14,7 @@ namespace MLPlayer {
 
 		public void AddReward (float reward)
 		{
-			if (state.endEpisode == 0) {
+			if (!state.endEpisode) {
 				state.reward += reward;
 			}
 		}
@@ -37,7 +37,7 @@ namespace MLPlayer {
 
 		public void EndEpisode ()
 		{
-			state.endEpisode = 1;
+			state.endEpisode = true;
 		}
 
 		public void Start() {

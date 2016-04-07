@@ -89,7 +89,7 @@ namespace MLPlayer {
 				if (Time.time - episodeStartTime > episodeTimeLength) {
 					TimeOver();
 				}
-				if (agent.state.endEpisode != 0) {
+				if (agent.state.endEpisode) {
 					StartNewEpisode ();
 				}
 				agent.UpdateState ();
