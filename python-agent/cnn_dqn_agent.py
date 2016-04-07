@@ -20,7 +20,7 @@ class CnnDqnAgent(object):
     cnn_feature_extractor = 'alexnet_feature_extractor.pickle'
     model = 'bvlc_alexnet.caffemodel'
     model_type = 'alexnet'
-    image_feature_dim = 256 * 6 * 6
+    image_feature_dim = 256 * 6 * 6 + 32 * 32  # Alexnet  , Depth Image
 
     def agent_init(self, use_gpu):
         self.use_gpu = use_gpu
@@ -38,7 +38,7 @@ class CnnDqnAgent(object):
         self.q_net = QNet(self.use_gpu, self.actions, self.image_feature_dim)
 
     def agent_start(self, observation):
-        obs_array = self.feature_extractor.feature(observation)
+        obs_array = np.r_[self.feature_extractor.feature(observation["image"]), observation["depth"]]
 
         # Initialize State
         self.state = np.zeros((self.q_net.hist_size, self.image_feature_dim), dtype=np.uint8)
@@ -49,17 +49,17 @@ class CnnDqnAgent(object):
 
         # Generate an Action e-greedy
         action, Q_now = self.q_net.e_greedy(state_, self.epsilon)
-        returnAction = action
+        return_action = action
 
         # Update for next step
-        self.last_action = copy.deepcopy(returnAction)
+        self.last_action = copy.deepcopy(return_action)
         self.last_state = self.state.copy()
         self.last_observation = obs_array
 
-        return returnAction
+        return return_action
 
     def agent_step(self, reward, observation):
-        obs_array = self.feature_extractor.feature(observation)
+        obs_array = np.r_[self.feature_extractor.feature(observation["image"]), observation["depth"]]
 
         # TODO Check algorithm
         obs_processed = np.maximum(obs_array, self.last_observation)  # Take maximum from two frames
@@ -97,7 +97,7 @@ class CnnDqnAgent(object):
 
         return action, eps, q_now, obs_array
 
-    def agent_step_after(self, reward, action, eps, q_now, obs_array):
+    def agent_step_update(self, reward, action, eps, q_now, obs_array):
         # Learning Phase
         if self.policy_frozen is False:  # Learning ON/OFF
             self.q_net.stock_experience(self.time, self.last_state, self.last_action, reward, self.state, False)

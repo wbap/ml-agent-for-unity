@@ -8,7 +8,9 @@ from cnn_dqn_agent import CnnDqnAgent
 import msgpack
 import io
 from PIL import Image
+from PIL import ImageOps
 import threading
+import numpy as np
 
 parser = argparse.ArgumentParser(description='ml-agent-for-unity')
 parser.add_argument('--port', '-p', default='8765', type=int,
@@ -44,15 +46,20 @@ class AgentServer(WebSocket):
 
         dat = msgpack.unpackb(payload)
         image = Image.open(io.BytesIO(bytearray(dat['image'])))
+        depth = Image.open(io.BytesIO(bytearray(dat['depth'])))
+        # depth.save("depth_" + str(self.cycle_counter) + ".png")
+        # image.save("image_" + str(self.cycle_counter) + ".png")
+
+        depth = np.array(ImageOps.grayscale(depth)).reshape(32 * 32) / 255.0
+        observation = {"image": image, "depth": depth}
         reward = dat['reward']
         end_episode = dat['endEpisode']
-        # image.save(str(self.cycle_counter) + ".png")
 
         if not self.agent_initialized:
             self.agent_initialized = True
             print ("initializing agent...")
             self.agent.agent_init(args.gpu)
-            action = self.agent.agent_start(image)
+            action = self.agent.agent_start(observation)
             self.send(str(action))
             with open(self.log_file, 'w') as the_file:
                 the_file.write('cycle, episode_reward_sum \n')
@@ -63,16 +70,16 @@ class AgentServer(WebSocket):
 
             if end_episode:
                 self.agent.agent_end(reward)
-                action = self.agent.agent_start(image)  # TODO
+                action = self.agent.agent_start(observation)  # TODO
                 self.send(str(action))
                 with open(self.log_file, 'a') as the_file:
                     the_file.write(str(self.cycle_counter) +
                                    ',' + str(self.reward_sum) + '\n')
                 self.reward_sum = 0
             else:
-                action, eps, q_now, obs_array = self.agent.agent_step(reward, image)
+                action, eps, q_now, obs_array = self.agent.agent_step(reward, observation)
                 self.send(str(action))
-                self.agent.agent_step_after(reward, action, eps, q_now, obs_array)
+                self.agent.agent_step_update(reward, action, eps, q_now, obs_array)
 
         self.thread_event.set()
 

@@ -7,6 +7,8 @@ using System.Threading;
 namespace MLPlayer {
 	public class Agent : MonoBehaviour {
 		[SerializeField] Camera camera;
+		[SerializeField] Camera depthCamera;
+		public Shader shader;
 		public Action action { set; get; }
 		public State state { set; get; }
 
@@ -19,7 +21,8 @@ namespace MLPlayer {
 
 		public void UpdateState ()
 		{
-			state.image = GetCameraImage ();
+			state.image = GetCameraImage (camera);
+			state.depth = GetCameraImage (depthCamera);
 		}
 		
 		public void ResetState ()
@@ -40,15 +43,19 @@ namespace MLPlayer {
 		public void Start() {
 			action = new Action ();
 			state = new State ();
+
+			depthCamera.depthTextureMode = DepthTextureMode.Depth;
+			depthCamera.SetReplacementShader(Shader.Find("Custom/ReplacementShader"), "");
 		}
 
-		public byte[] GetCameraImage() {
+
+		public byte[] GetCameraImage(Camera cam) {
 			RenderTexture currentRT = RenderTexture.active;
-			RenderTexture.active = camera.targetTexture;
-			camera.Render();
-			Texture2D image = new Texture2D(camera.targetTexture.width, camera.targetTexture.height,
+			RenderTexture.active = cam.targetTexture;
+			cam.Render();
+			Texture2D image = new Texture2D(cam.targetTexture.width, cam.targetTexture.height,
 			                                TextureFormat.RGB24, false);
-			image.ReadPixels(new Rect(0, 0, camera.targetTexture.width, camera.targetTexture.height), 0, 0);
+			image.ReadPixels(new Rect(0, 0, cam.targetTexture.width, cam.targetTexture.height), 0, 0);
 			image.Apply();
 			RenderTexture.active = currentRT;
 			byte[] bytes = image.EncodeToPNG ();
