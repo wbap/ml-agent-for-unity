@@ -1,4 +1,4 @@
-# This is under construction!
+under construction!
 # Machine Learning Agent for Unity
 =============
 
