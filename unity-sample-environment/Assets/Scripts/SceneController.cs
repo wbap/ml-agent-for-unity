@@ -31,7 +31,7 @@ namespace MLPlayer {
 		WebSocketSharp.WebSocket ws;
 		float lastSendTime;
 		float episodeStartTime = 0f;
-		bool waitingFlag = false;
+
 		public static ManualResetEvent received = new ManualResetEvent(false);
 
 		void OnMassage(string msg) {
@@ -39,7 +39,7 @@ namespace MLPlayer {
 			received.Set();
 		}
 
-		void OnCycleUpdateAfterReceivedAction() {
+		void OnCycleUpdateAfterReceiveAction() {
 			agent.ResetState ();
 		}
 
@@ -49,7 +49,7 @@ namespace MLPlayer {
 		}
 
 		void StartNewEpisode() {
-			Debug.Log ("StartNewEpisode");
+			//Debug.Log ("StartNewEpisode");
 			episodeStartTime = Time.time;
 
 			environment.OnReset ();
@@ -94,7 +94,7 @@ namespace MLPlayer {
 				ws.Send(msg);
 				received.WaitOne();
 
-				OnCycleUpdateAfterReceivedAction();
+				OnCycleUpdateAfterReceiveAction();
 			}
 		}
 	}
