@@ -38,7 +38,7 @@ class AgentServer(WebSocket):
     agent_initialized = False
     cycle_counter = 0
     thread_event = threading.Event()
-    log_file = 'log_reward.log'
+    log_file = 'reward.log'
     reward_sum = 0
 
     def received_message(self, m):

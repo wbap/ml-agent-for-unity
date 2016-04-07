@@ -1,7 +1,9 @@
 
 *.caffemodel
 *.pickle
+*.npy
 .DS_Store
+
 
 ############# Unity
 [Ll]ibrary/
