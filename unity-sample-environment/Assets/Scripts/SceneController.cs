@@ -20,11 +20,10 @@ namespace MLPlayer {
 				return instance;
 			}
 		}
-
 		
-		string url = "ws://localhost:8765/ws";
-		float cycleTimeStepSize = 0.15f;
-		float episodeTimeLength = 15.0f;
+		[SerializeField] string url;
+		[SerializeField] float cycleTimeStepSize;
+		[SerializeField] float episodeTimeLength;
 
 		[SerializeField] Agent agent;
 		[SerializeField] Environment environment;
@@ -40,12 +39,9 @@ namespace MLPlayer {
 			received.Set();
 		}
 
-
-
 		void OnCycleUpdateAfterReceivedAction() {
 			agent.ResetState ();
 		}
-		
 
 		public void TimeOver() {
 			agent.AddReward (0);
@@ -61,7 +57,6 @@ namespace MLPlayer {
 			agent.StartEpisode ();
 		}
 
-
 		void Start () {
 			StartNewEpisode ();
 			ws = new WebSocketSharp.WebSocket (url);
@@ -69,7 +64,6 @@ namespace MLPlayer {
 			ws.Connect ();
 
 			ws.OnMessage += (sender, e) => OnMassage(e.Data);
-
 			// if using binary 
 			//ws.OnMessage += (sender, e) => OnMassage(e.RawData);
 
@@ -77,7 +71,6 @@ namespace MLPlayer {
 		}
 
 		void FixedUpdate () {
-
 			if (!ws.IsConnected) {
 				Debug.Log("not connected:" + url);
 				return;
@@ -104,6 +97,5 @@ namespace MLPlayer {
 				OnCycleUpdateAfterReceivedAction();
 			}
 		}
-
 	}
 }
