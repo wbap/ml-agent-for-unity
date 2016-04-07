@@ -20,9 +20,11 @@ class CnnDqnAgent(object):
     cnn_feature_extractor = 'alexnet_feature_extractor.pickle'
     model = 'bvlc_alexnet.caffemodel'
     model_type = 'alexnet'
-    image_feature_dim = 256 * 6 * 6 + 32 * 32  # Alexnet  , Depth Image
+    image_feature_dim = 256 * 6 * 6
+    depth_image_dim = 32 * 32
 
     def agent_init(self, use_gpu):
+        self.q_net_input_dim = self.image_feature_dim + self.depth_image_dim
         self.use_gpu = use_gpu
         if os.path.exists(self.cnn_feature_extractor):
             print("loading... " + self.cnn_feature_extractor),
@@ -35,15 +37,15 @@ class CnnDqnAgent(object):
 
         self.time = 0
         self.epsilon = 1.0  # Initial exploratoin rate
-        self.q_net = QNet(self.use_gpu, self.actions, self.image_feature_dim)
+        self.q_net = QNet(self.use_gpu, self.actions, self.q_net_input_dim)
 
     def agent_start(self, observation):
         obs_array = np.r_[self.feature_extractor.feature(observation["image"]), observation["depth"]]
 
         # Initialize State
-        self.state = np.zeros((self.q_net.hist_size, self.image_feature_dim), dtype=np.uint8)
+        self.state = np.zeros((self.q_net.hist_size, self.q_net_input_dim), dtype=np.uint8)
         self.state[0] = obs_array
-        state_ = np.asanyarray(self.state.reshape(1, self.q_net.hist_size, self.image_feature_dim), dtype=np.float32)
+        state_ = np.asanyarray(self.state.reshape(1, self.q_net.hist_size, self.q_net_input_dim), dtype=np.float32)
         if self.use_gpu >= 0:
             state_ = cuda.to_gpu(state_)
 
@@ -74,7 +76,7 @@ class CnnDqnAgent(object):
         else:
             print("self.DQN.hist_size err")
 
-        state_ = np.asanyarray(self.state.reshape(1, self.q_net.hist_size, self.image_feature_dim), dtype=np.float32)
+        state_ = np.asanyarray(self.state.reshape(1, self.q_net.hist_size, self.q_net_input_dim), dtype=np.float32)
         if self.use_gpu >= 0:
             state_ = cuda.to_gpu(state_)
 
