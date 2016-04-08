@@ -50,7 +50,7 @@ class CnnDqnAgent(object):
             state_ = cuda.to_gpu(state_)
 
         # Generate an Action e-greedy
-        action, Q_now = self.q_net.e_greedy(state_, self.epsilon)
+        action, q_now = self.q_net.e_greedy(state_, self.epsilon)
         return_action = action
 
         # Update for next step
