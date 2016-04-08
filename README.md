@@ -115,5 +115,5 @@ Set "Time Scale" to 100. This will make simulation more faster, but GUI response
  + Assets/Packages/websocket-sharp
 
 
-## Creator
-[Masayoshi Nakamura](http://masayosshi.com/)
+## License
+This program was made by [DWANGO ARTIFICIAL INTELLIGENCE LABORATORY](http://ailab.dwango.co.jp/en/) and lab member [Masayoshi Nakamura](http://masayosshi.com/)
