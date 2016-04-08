@@ -40,6 +40,7 @@ class AgentServer(WebSocket):
     thread_event = threading.Event()
     log_file = 'reward.log'
     reward_sum = 0
+    depth_image_dim = 32 * 32
 
     def received_message(self, m):
         payload = m.data
@@ -58,7 +59,10 @@ class AgentServer(WebSocket):
         if not self.agent_initialized:
             self.agent_initialized = True
             print ("initializing agent...")
-            self.agent.agent_init(args.gpu)
+            self.agent.agent_init(
+                use_gpu=args.gpu,
+                depth_image_dim=self.depth_image_dim)
+
             action = self.agent.agent_start(observation)
             self.send(str(action))
             with open(self.log_file, 'w') as the_file:

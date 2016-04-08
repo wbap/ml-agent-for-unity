@@ -21,11 +21,12 @@ class CnnDqnAgent(object):
     model = 'bvlc_alexnet.caffemodel'
     model_type = 'alexnet'
     image_feature_dim = 256 * 6 * 6
-    depth_image_dim = 32 * 32
 
-    def agent_init(self, use_gpu):
+    def agent_init(self, **options):
+        self.use_gpu = options['use_gpu']
+        self.depth_image_dim = options['depth_image_dim']
         self.q_net_input_dim = self.image_feature_dim + self.depth_image_dim
-        self.use_gpu = use_gpu
+
         if os.path.exists(self.cnn_feature_extractor):
             print("loading... " + self.cnn_feature_extractor),
             self.feature_extractor = pickle.load(open(self.cnn_feature_extractor))
