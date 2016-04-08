@@ -51,7 +51,7 @@ class AgentServer(WebSocket):
         # depth.save("depth_" + str(self.cycle_counter) + ".png")
         # image.save("image_" + str(self.cycle_counter) + ".png")
 
-        depth = np.array(ImageOps.grayscale(depth)).reshape(32 * 32) / 255.0
+        depth = np.array(ImageOps.grayscale(depth)).reshape(self.depth_image_dim)
         observation = {"image": image, "depth": depth}
         reward = dat['reward']
         end_episode = dat['endEpisode']

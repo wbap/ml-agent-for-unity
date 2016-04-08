@@ -70,7 +70,7 @@ class CnnFeatureExtractor:
         else:
             feature = feature.data.reshape(self.out_dim)
 
-        return feature
+        return feature * 255.0
 
      
 
